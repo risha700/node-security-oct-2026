@@ -1,0 +1,90 @@
+{
+  "node": "26.12.0",
+  "execPath": "/usr/local/bin/node",
+  "platform": "linux",
+  "arch": "x64",
+  "advisory": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+  "patchBaseline": "26.12.1",
+  "versionStatus": "below-october-security-baseline",
+  "checks": [
+    {
+      "cve": "CVE-2026-105482",
+      "probe": "loopback-dns",
+      "outcome": "vulnerable-behavior",
+      "evidence": "dns.resolve4 truncated an allowed-suffix string at NUL and queried attacker.invalid",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-105483",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "vulnerable-behavior",
+      "evidence": "Accepted certificate SAN DNS:127.0.0.1 for noncanonical host １２７.0.0.1",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106069",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "rejected",
+      "evidence": "Rejected certificate SAN IP Address:87.0.0.1 for 0127.0.0.1: ERR_TLS_CERT_ALTNAME_INVALID",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106072",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "vulnerable-behavior",
+      "evidence": "Accepted certificate SAN DNS:127.0.0.1 for noncanonical host 0177.0.0.1",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106071",
+      "probe": "permission-wildcard",
+      "outcome": "vulnerable-behavior",
+      "evidence": "Wildcard confidential.* unexpectedly granted confidential",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106073",
+      "probe": "permission-realpath",
+      "outcome": "vulnerable-behavior",
+      "evidence": "realpathSync returned a disallowed sentinel path",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106074",
+      "probe": "snapshot-entropy",
+      "outcome": "vulnerable-behavior",
+      "evidence": "Two separately started processes generated identical cached UUID and randomInt",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-111497",
+      "probe": "brotli-invalid-block-switch",
+      "outcome": "vulnerable-behavior",
+      "evidence": "{\"sync\":{\"code\":\"ERR__ERROR_FORMAT_BLOCK_LENGTH_1\",\"errno\":-9,\"message\":\"Decompression failed\"},\"streaming\":{\"code\":\"ERR__ERROR_FORMAT_BLOCK_LENGTH_1\",\"errno\":-9,\"message\":\"Decompression failed\"},\"exportedConstant\":null,\"caveat\":\"Upstream 22-byte decoder invariant test; does not demonstrate arbitrary OOB writes or RCE\"}",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-105481",
+      "probe": "http-agent-free-socket",
+      "outcome": "vulnerable-behavior",
+      "evidence": "{\"mode\":\"free\",\"workerWrote\":true,\"queuedBeforeReuse\":true,\"reusedSocket\":true,\"first\":{\"status\":200,\"body\":\"/request1\",\"poisoned\":false},\"second\":{\"status\":200,\"body\":\"\",\"poisoned\":true}}",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-105481",
+      "probe": "http-agent-queued-socket",
+      "outcome": "vulnerable-behavior",
+      "evidence": "{\"mode\":\"queued\",\"workerWrote\":true,\"queuedBeforeReuse\":true,\"reusedSocket\":false,\"first\":{\"status\":200,\"body\":\"/request1\",\"poisoned\":false},\"second\":{\"status\":200,\"body\":\"\",\"poisoned\":true}}",
+      "runtimeAssessment": "older-than-security-release"
+    },
+    {
+      "cve": "CVE-2026-106070",
+      "probe": "zip-header-cache",
+      "outcome": "vulnerable-behavior",
+      "evidence": "{\"fixture\":{\"file\":\"<temporary fixture>\",\"entry\":\"entry.txt\",\"decoy\":\"SCANNER-SEES-BENIGN!!\",\"payload\":\"UNZIP-SEES-PAYLOAD!!!\",\"bytes\":158},\"operations\":{\"modified\":{\"returned\":true,\"content\":\"true\"},\"contentAfterModifiedFirst\":{\"returned\":true,\"content\":\"SCANNER-SEES-BENIGN!!\"},\"contentAfterModifiedSecond\":{\"error\":\"ERR_ZIP_ENTRY_CORRUPT\",\"message\":\"ZIP entry is corrupt: entry \\\"entry.txt\\\" failed CRC-32 verification\"},\"directFirst\":{\"error\":\"ERR_ZIP_INVALID_ARCHIVE\",\"message\":\"invalid ZIP archive: local and central header crc-32 or sizes disagree\"},\"directSecond\":{\"returned\":true,\"content\":\"SCANNER-SEES-BENIGN!!\"},\"compact\":{\"returned\":true,\"content\":\"PK\\u0003\\u0004\\u0014\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000!\\u0000Jm�\\t\\u0015\\u0000\\u0000\\u0000\\u0015\\u0000\\u0000\\u0000\\t\\u0000\\u0000\\u0000entry.txtSCANNER-SEES-BENIGN!!PK\\u0001\\u0002\\u0014\\u0000\\u0014\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000!\\u0000Jm�\\t\\u0015\\u0000\\u0000\\u0000\\u0015\\u0000\\u0000\\u0000\\t\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000entry.txtPK\\u0005\\u0006\\u0000\\u0000\\u0000\\u0000\\u0001\\u0000\\u0001\\u00007\\u0000\\u0000\\u0000<\\u0000\\u0000\\u0000\\u0000\\u0000\"},\"asyncModified\":{\"returned\":true,\"content\":\"true\"},\"asyncFirst\":{\"returned\":true,\"content\":\"SCANNER-SEES-BENIGN!!\"},\"asyncSecond\":{\"error\":\"ERR_ZIP_ENTRY_CORRUPT\",\"message\":\"ZIP entry is corrupt: entry \\\"entry.txt\\\" failed CRC-32 verification\"},\"asyncIterator\":{\"error\":\"ERR_ZIP_ENTRY_CORRUPT\",\"message\":\"ZIP entry is corrupt: entry \\\"entry.txt\\\" failed CRC-32 verification\"},\"asyncStream\":{\"error\":\"ERR_ZIP_ENTRY_CORRUPT\",\"message\":\"ZIP entry is corrupt: entry \\\"entry.txt\\\" failed CRC-32 verification\"},\"asyncCompact\":{\"returned\":true,\"content\":\"PK\\u0003\\u0004\\u0014\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000!\\u0000Jm�\\t\\u0015\\u0000\\u0000\\u0000\\u0015\\u0000\\u0000\\u0000\\t\\u0000\\u0000\\u0000entry.txtSCANNER-SEES-BENIGN!!PK\\u0001\\u0002\\u0014\\u0000\\u0014\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000!\\u0000Jm�\\t\\u0015\\u0000\\u0000\\u0000\\u0015\\u0000\\u0000\\u0000\\t\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000entry.txtPK\\u0005\\u0006\\u0000\\u0000\\u0000\\u0000\\u0001\\u0000\\u0001\\u00007\\u0000\\u0000\\u0000<\\u0000\\u0000\\u0000\\u0000\\u0000\"}},\"leaked\":[\"contentAfterModifiedFirst\",\"directSecond\",\"compact\",\"asyncFirst\",\"asyncCompact\"],\"nonRejecting\":[\"contentAfterModifiedFirst\",\"contentAfterModifiedSecond\",\"directSecond\",\"compact\",\"asyncFirst\",\"asyncSecond\",\"asyncIterator\",\"asyncStream\",\"asyncCompact\"],\"caveat\":\"Only built-in node:zlib.ZipFile is tested; not third-party ZIP readers\"}",
+      "runtimeAssessment": "older-than-security-release"
+    }
+  ],
+  "sourceScan": null,
+  "caveat": "Run on isolated test binaries. Pass/fail is scoped to these probes, not an app security attestation; version is the primary runtime remediation signal."
+}

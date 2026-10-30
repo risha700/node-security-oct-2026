@@ -1,0 +1,90 @@
+{
+  "node": "24.22.1",
+  "execPath": "/usr/local/bin/node",
+  "platform": "linux",
+  "arch": "x64",
+  "advisory": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases",
+  "patchBaseline": "24.22.1",
+  "versionStatus": "meets-october-security-baseline",
+  "checks": [
+    {
+      "cve": "CVE-2026-105482",
+      "probe": "loopback-dns",
+      "outcome": "rejected",
+      "evidence": "Invalid hostname rejected before DNS query (ERR_INVALID_ARG_VALUE)",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-105483",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "rejected",
+      "evidence": "Rejected certificate SAN DNS:127.0.0.1 for １２７.0.0.1: ERR_TLS_CERT_ALTNAME_INVALID",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-106069",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "rejected",
+      "evidence": "Rejected certificate SAN IP Address:87.0.0.1 for 0127.0.0.1: ERR_TLS_CERT_ALTNAME_INVALID",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-106072",
+      "probe": "tls.checkServerIdentity",
+      "outcome": "rejected",
+      "evidence": "Rejected certificate SAN DNS:127.0.0.1 for 0177.0.0.1: ERR_TLS_CERT_ALTNAME_INVALID",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-106071",
+      "probe": "permission-sentinel",
+      "outcome": "not-applicable",
+      "evidence": "Release line not covered",
+      "runtimeAssessment": "not-affected-per-advisory"
+    },
+    {
+      "cve": "CVE-2026-106073",
+      "probe": "permission-realpath",
+      "outcome": "rejected",
+      "evidence": "realpathSync denied disallowed sentinel path",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-106074",
+      "probe": "snapshot-entropy",
+      "outcome": "rejected",
+      "evidence": "Two processes returned distinct first UUIDs and randomInt values",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-111497",
+      "probe": "brotli-invalid-block-switch",
+      "outcome": "rejected",
+      "evidence": "{\"sync\":{\"code\":\"ERR__ERROR_FORMAT_BLOCK_SWITCH\",\"errno\":-17,\"message\":\"Decompression failed\"},\"streaming\":{\"code\":\"ERR__ERROR_FORMAT_BLOCK_SWITCH\",\"errno\":-17,\"message\":\"Decompression failed\"},\"exportedConstant\":-17,\"caveat\":\"Upstream 22-byte decoder invariant test; does not demonstrate arbitrary OOB writes or RCE\"}",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-105481",
+      "probe": "http-agent-free-socket",
+      "outcome": "inconclusive",
+      "evidence": "{\"mode\":\"free\",\"workerWrote\":true,\"queuedBeforeReuse\":false,\"reusedSocket\":false,\"first\":{\"status\":200,\"body\":\"/request1\",\"poisoned\":false},\"second\":{\"status\":200,\"body\":\"/request2\",\"poisoned\":false}}",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-105481",
+      "probe": "http-agent-queued-socket",
+      "outcome": "rejected",
+      "evidence": "{\"mode\":\"queued\",\"workerWrote\":true,\"queuedBeforeReuse\":true,\"reusedSocket\":false,\"first\":{\"status\":200,\"body\":\"/request1\",\"poisoned\":false},\"second\":{\"status\":200,\"body\":\"/request2\",\"poisoned\":false}}",
+      "runtimeAssessment": "fixed-release-or-newer"
+    },
+    {
+      "cve": "CVE-2026-106070",
+      "probe": "zip-header-cache",
+      "outcome": "not-applicable",
+      "evidence": "Only Node 26 affected per advisory",
+      "runtimeAssessment": "not-affected-per-advisory"
+    }
+  ],
+  "sourceScan": null,
+  "caveat": "Run on isolated test binaries. Pass/fail is scoped to these probes, not an app security attestation; version is the primary runtime remediation signal."
+}
